@@ -1,7 +1,7 @@
 <app-navbar [titulo]="'Combined Dashboard'"></app-navbar>
 <app-error></app-error>
 <div class="container">
-    <app-spinner *ngIf="loading"></app-spinner>
+    <app-spinner [visible]="loading" text="Loading Plans..."></app-spinner>
     <app-listado-noticias
     [noticias]="listadoNoticias"
     *ngIf="!loading"

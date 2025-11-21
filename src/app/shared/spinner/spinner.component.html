@@ -1,10 +1,7 @@
-<div class="d-flex justify-content-center">
-  <div class="sk-chase">
-    <div class="sk-chase-dot"></div>
-    <div class="sk-chase-dot"></div>
-    <div class="sk-chase-dot"></div>
-    <div class="sk-chase-dot"></div>
-    <div class="sk-chase-dot"></div>
-    <div class="sk-chase-dot"></div>
+
+<div class="spinner-overlay" *ngIf="visible">
+  <div class="spinner-container">
+    <div class="spinner"></div>
+    <div class="spinner-text">{{ text }}</div>
   </div>
 </div>
