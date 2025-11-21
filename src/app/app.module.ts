@@ -9,6 +9,7 @@ import { ErrorComponent } from './shared/error/error.component';
 import { SpinnerComponent } from './shared/spinner/spinner.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { ListadoNoticiasComponent } from './components/listado-noticias/listado-noticias.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { FormsModule } from '@angular/forms';
     DashboardComponent,
     ErrorComponent,
     SpinnerComponent,
+    ListadoNoticiasComponent,
   ],
   imports: [
     BrowserModule,

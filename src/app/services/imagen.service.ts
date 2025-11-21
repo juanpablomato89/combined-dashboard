@@ -9,20 +9,11 @@ import { environment } from 'src/environments/environment.prod';
 export class ImagenService {
   termino = 'azul';
   page = 1;
-  perPage = 50;
+  perPage = 30;
 
 
-  private error$ = new Subject<string>();
   private terminoBusqueda$ = new Subject<string>();
   constructor(private http: HttpClient) { }
-
-  setError(mensaje: string) {
-    this.error$.next(mensaje);
-  }
-
-  getError(): Observable<string> {
-    return this.error$.asObservable();
-  }
 
   setTerminoBusqueda(termino: string) {
     this.terminoBusqueda$.next(termino);
