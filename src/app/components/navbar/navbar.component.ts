@@ -7,7 +7,7 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
 
-  @Input() titulo: string = 'Combined Dashboard';
+  @Input() titulo: string = '';
 
   constructor() {
 
