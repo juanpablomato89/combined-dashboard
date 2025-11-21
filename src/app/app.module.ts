@@ -10,6 +10,7 @@ import { SpinnerComponent } from './shared/spinner/spinner.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { ListadoNoticiasComponent } from './components/listado-noticias/listado-noticias.component';
+import { ListarImagenComponent } from './components/listar-imagen/listar-imagen.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { ListadoNoticiasComponent } from './components/listado-noticias/listado-
     ErrorComponent,
     SpinnerComponent,
     ListadoNoticiasComponent,
+    ListarImagenComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,40 @@
+<div class="row row-cols-1 row-cols-md-4 g-4">
+  <div class="col mb-2" *ngFor="let item of listadoImagenes">
+    <div class="card">
+      <img [src]="item.previewURL" class="card-img-top" alt="...." />
+      <div class="card-body">
+        <div class="d-grid gap-2">
+          <a
+            [href]="item.largeImageURL"
+            target="_blank"
+            class="btn btn-primary"
+            type="button"
+            >Ver imagen</a
+          >
+        </div>
+      </div>
+      <div class="card-footer text-muted">
+        <div class="row">
+          <div class="col">
+            <p class="likesViews">Likes</p>
+            <span class="badge bg-light text-dark">{{ item.likes }}</span>
+          </div>
+          <div class="col">
+            <p class="likesViews">Views</p>
+            <span class="badge bg-light text-dark">{{ item.views }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div *ngIf="listadoImagenes.length > 0" class="d-flex justify-content-center">
+  <ul class="pagination pagination-lg">
+    <li class="page-item">
+      <a class="btn btn-link page-link">&laquo;</a>
+    </li>
+    <li class="page-item">
+      <a class="btn btn-link page-link">&raquo;</a>
+    </li>
+  </ul>
+</div>
