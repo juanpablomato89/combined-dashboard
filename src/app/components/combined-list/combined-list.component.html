@@ -1,0 +1,43 @@
+<div class="row row-cols-1 row-cols-md-2 g-4">
+  <div *ngFor="let item of list" class="col">
+    <div class="card" *ngIf="item.type ==='news'">
+      <img [src]="item.urlToImage" class="card-img-top" alt="..." />
+      <div class="card-body">
+        <span class="badge bg-primary mb-1">{{ item.name }}</span>
+        <h5 class="card-title">{{ item.title }}</h5>
+        <p class="card-text">{{ item.description }}</p>
+        <div class="d-grid gap-2">
+          <a [href]="item.url" target="_blank" class="btn btn-primary"
+            >Ver Noticia</a
+          >
+        </div>
+      </div>
+    </div>
+    <div class="card" *ngIf="item.type ==='img'">
+      <img [src]="item.previewURL" class="card-img-top" alt="...." />
+      <div class="card-body">
+        <div class="d-grid gap-2">
+          <a
+            [href]="item.largeImageURL"
+            target="_blank"
+            class="btn btn-primary"
+            type="button"
+            >Ver imagen</a
+          >
+        </div>
+      </div>
+      <div class="card-footer text-muted">
+        <div class="row">
+          <div class="col">
+            <p class="likesViews">Likes</p>
+            <span class="badge bg-light text-dark">{{ item.likes }}</span>
+          </div>
+          <div class="col">
+            <p class="likesViews">Views</p>
+            <span class="badge bg-light text-dark">{{ item.views }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

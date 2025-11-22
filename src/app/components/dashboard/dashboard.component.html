@@ -2,11 +2,9 @@
 <app-error></app-error>
 <div class="container">
     <app-spinner [visible]="loading" text="Loading Plans..."></app-spinner>
-    <app-listado-noticias
-    [noticias]="listadoNoticias"
+    <app-combined-list
+    [list]="combinedList"
     *ngIf="!loading"
-  ></app-listado-noticias>
-  <app-listar-imagen [listadoImagenes]="listadoImagenes"
-    *ngIf="!loading"></app-listar-imagen>
+  ></app-combined-list>
 
 </div>

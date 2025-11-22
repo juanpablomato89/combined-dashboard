@@ -11,6 +11,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { ListadoNoticiasComponent } from './components/listado-noticias/listado-noticias.component';
 import { ListarImagenComponent } from './components/listar-imagen/listar-imagen.component';
+import { CombinedListComponent } from './components/combined-list/combined-list.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { ListarImagenComponent } from './components/listar-imagen/listar-imagen.
     SpinnerComponent,
     ListadoNoticiasComponent,
     ListarImagenComponent,
+    CombinedListComponent,
   ],
   imports: [
     BrowserModule,

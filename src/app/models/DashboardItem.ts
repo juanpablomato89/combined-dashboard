@@ -6,18 +6,19 @@ export interface DashboardItem {
 
 export interface NewsItem extends DashboardItem {
     type: 'news';
-    title: string;
-    summary: string;
-    source: string;
-    imageUrl?: string;
+    urlToImage?: string;
+    name?: string;
+    title?: string;
+    description?: string;
+    url?: string;
+    date: Date;
 }
 
 export interface ImgItem extends DashboardItem {
     type: 'img';
-    temperature: number;
-    condition: string;
-    location: string;
-    humidity: number;
-    windSpeed: number;
-    icon: string;
+    previewURL: number;
+    largeImageURL: string;
+    likes: string;
+    views: number;
+    date: Date;
 }
