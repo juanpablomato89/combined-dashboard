@@ -37,7 +37,11 @@ export class DashboardComponent implements OnInit, OnDestroy{
         finalize(() => this.loading = false)
       ).subscribe({
         next: (response) => {
-          this.combinedList = response;
+          if (response.length === 0) {
+            this._errorService.setError("Ops... No se encontraron elementos...")
+          } else {
+            this.combinedList = response;
+          }
         },
         error: (error) => {
           this._errorService.setError(error);
