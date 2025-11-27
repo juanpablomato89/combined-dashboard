@@ -23,7 +23,7 @@ export class NoticiaService {
             'No hay noticias disponibles en este momento'
           );
         }
-        return of({ imgs: [] });
+        return of({ news: [] });
       })
     );
   }
