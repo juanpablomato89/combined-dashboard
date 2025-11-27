@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { catchError, finalize, forkJoin, map, merge, Observable, of, scan, Subject, take, takeUntil, timeout, timer } from 'rxjs';
-import { DashboardItem, ImgItem, NewsItem } from 'src/app/models/DashboardItem';
+import { finalize, forkJoin, map, Observable, Subject, takeUntil, timer } from 'rxjs';
+import { ImgItem, NewsItem } from 'src/app/models/DashboardItem';
 import { ErrorService } from 'src/app/services/error.service';
 import { ImagenService } from 'src/app/services/imagen.service';
 import { NoticiaService } from 'src/app/services/noticia.service';
@@ -52,7 +52,7 @@ export class DashboardComponent implements OnInit, OnDestroy{
   
   buscarNoticias() {
     this.loading = true;
-    this._noticiaService.buscarNoticias().pipe(
+    this._noticiaService.getNoticias().pipe(
       takeUntil(this.destroy$),
       finalize(() => this.loading = false)
     ).subscribe({
@@ -89,15 +89,13 @@ export class DashboardComponent implements OnInit, OnDestroy{
     this.loading = true;
 
     return forkJoin({
-      noticias: this._noticiaService.buscarNoticias(),      
+      noticias: this._noticiaService.getNoticias(),      
       imagenes: this._imagenService.getImagenes(),    
       
     }).pipe(
       finalize(() => this.loading = false),
       map(({ noticias, imagenes }) => {
-        // Extraer el array de noticias de la respuesta
         const newsList = noticias.articles || [];
-
         const newsItems: NewsItem[] = newsList.map((article: any) => ({
           type: 'news' as const,
           urlToImage: article.urlToImage || '',
@@ -109,8 +107,6 @@ export class DashboardComponent implements OnInit, OnDestroy{
           id: article.url
         }));
 
-
-        // Extraer el array de imágenes de la respuesta
         const imagesList = imagenes.hits || [];
         const newsImg: ImgItem[] = imagesList.map((img: any) => ({
           type: 'img' as const,

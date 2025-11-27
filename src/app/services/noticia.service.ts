@@ -13,7 +13,7 @@ export class NoticiaService {
 
   constructor(private http: HttpClient, private _errorService: ErrorService) {}
 
-  buscarNoticias(): Observable<any> {
+  getNoticias(): Observable<any> {
     const URL = `https://newsapi.org/v2/top-headlines?country=${this.pais}&category=${this.categoria}&apiKey=${environment.noticiasApiKey}`;
     return this.http.get(URL).pipe(
       timeout(60000),
