@@ -18,11 +18,6 @@ export class NoticiaService {
     return this.http.get(URL).pipe(
       timeout(60000),
       catchError((error) => {
-        if (error.name === 'TimeoutError') {
-          this._errorService.setError(
-            'No hay noticias disponibles en este momento'
-          );
-        }
         return of({ news: [] });
       })
     );

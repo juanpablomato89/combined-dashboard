@@ -32,11 +32,6 @@ export class ImagenService {
       .pipe(
         timeout(60000),
         catchError((error) => {
-          if (error.name === 'TimeoutError') {
-            this._errorService.setError(
-              'No hay imagenes disponibles en este momento'
-            );
-          }
           return of({ imgs: [] });
         })
       );
