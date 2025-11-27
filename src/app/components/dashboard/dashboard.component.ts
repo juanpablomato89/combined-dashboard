@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { catchError, finalize, forkJoin, map, merge, Observable, of, scan, Subject, takeUntil, timer } from 'rxjs';
+import { catchError, finalize, forkJoin, map, merge, Observable, of, scan, Subject, take, takeUntil, timeout, timer } from 'rxjs';
 import { DashboardItem, ImgItem, NewsItem } from 'src/app/models/DashboardItem';
 import { ErrorService } from 'src/app/services/error.service';
 import { ImagenService } from 'src/app/services/imagen.service';
@@ -86,10 +86,14 @@ export class DashboardComponent implements OnInit, OnDestroy{
   }
 
   getCombinedStream(): Observable<any[]> {
+    this.loading = true;
+
     return forkJoin({
-      noticias: this._noticiaService.buscarNoticias().pipe(catchError(() => of({ news: [] }))),
-      imagenes: this._imagenService.getImagenes().pipe(catchError(() => of({ imgs: [] }))),
+      noticias: this._noticiaService.buscarNoticias(),      
+      imagenes: this._imagenService.getImagenes(),    
+      
     }).pipe(
+      finalize(() => this.loading = false),
       map(({ noticias, imagenes }) => {
         // Extraer el array de noticias de la respuesta
         const newsList = noticias.articles || [];

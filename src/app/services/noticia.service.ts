@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { catchError, Observable, of, timeout } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment.prod';
+import { ErrorService } from './error.service';
 
 @Injectable({
   providedIn: 'root',
@@ -10,10 +11,20 @@ export class NoticiaService {
   categoria = 'general';
   pais = 'us';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private _errorService: ErrorService) {}
 
   buscarNoticias(): Observable<any> {
     const URL = `https://newsapi.org/v2/top-headlines?country=${this.pais}&category=${this.categoria}&apiKey=${environment.noticiasApiKey}`;
-    return this.http.get(URL);
+    return this.http.get(URL).pipe(
+      timeout(60000),
+      catchError((error) => {
+        if (error.name === 'TimeoutError') {
+          this._errorService.setError(
+            'No hay noticias disponibles en este momento'
+          );
+        }
+        return of({ imgs: [] });
+      })
+    );
   }
 }
